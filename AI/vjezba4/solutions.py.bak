@@ -1,0 +1,122 @@
+from state import State
+from collections import Counter
+
+def print_graph(state_graph):
+    for key, value in state_graph.items():
+        print(key, " : ", value)
+    print()
+    
+def generate(state, state_graph):
+    if not state.__str__() in state_graph.keys():
+        state_graph[state.__str__()] = state.copy()
+    else:
+        return state_graph
+
+    if state.is_solved():
+        return state_graph
+    
+    if not state.is_terminal():
+        for action in state.all_actions():
+            state.action(action)
+            generate(state, state_graph)
+            state.undo_action(action)
+
+    return state_graph
+    
+def print_solution(goal, path):   
+    final_path = []
+    state = goal
+    
+    while state is not None:
+        print(state)
+        final_path.append(state)
+        state = path[str(state)]
+        
+    return final_path
+    
+def solution_bfs(state):
+    queue = [ state ]
+    visited = { str(state): None }
+    
+    while len(queue): 
+        next_step = queue.pop(0)
+            
+        if not next_step.is_terminal():
+            for child in next_step.next_states():
+                if str(child) not in visited:
+                    visited[str(child)] = next_step
+                    if child.is_solved():
+                        print_solution(child, visited)
+                        #visited[str(action)] = next_step
+                        return visited
+                    queue.append(child)   
+            
+    return visited
+        
+def heuristic(state):  # koliko je objekata na desnoj strani
+    x = str(state.copy()).split(" ") # element na indeksu 2 je desna obala
+    counts = Counter(x[2])
+    return counts['-']
+
+def solution_BestFS(state):
+    queue = [ state ]
+    visited = { str(state): None }
+    
+    while len(queue): 
+        next_step = queue.pop(0)
+        
+        if not next_step.is_terminal():
+            for child in next_step.next_states():
+                if str(child) not in visited:
+                    visited[str(child)] = next_step
+                    if child.is_solved():
+                        print_solution(child, visited)
+                        #visited.append(str(action))
+                        return visited
+                    queue.append(child)   
+            queue = sorted(queue, key=heuristic)
+            
+    return visited
+
+def solution_dfs(state):
+    stack = [ state ]
+    visited = { str(state): None }
+    
+    while len(stack): 
+        next_step = stack.pop()
+        
+        if not next_step.is_terminal():
+            for child in next_step.next_states():
+                if str(child) not in visited:
+                    visited[str(child)] = next_step
+                    if child.is_solved():
+                        print_solution(child, visited)
+                        #visited.append(str(action))
+                        return visited
+                    stack.append(child)   
+            
+    return visited
+    
+        
+if __name__ == "__main__":
+    state = State()
+    
+    graph = {}
+    #generate(state, graph)
+    #print(graph)
+    #print_graph(graph)
+    #print(len(graph))
+    
+    #path = solution_bfs(state)
+    #print(len(path))
+    #print_graph(path)
+    
+    #path = solution_BestFS(state)
+    #print(len(path))
+    
+    #path = solution_dfs(state)
+    #print(len(path))
+    #print_graph(path)
+    
+    
+    
