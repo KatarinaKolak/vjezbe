@@ -1,0 +1,5 @@
+Amsterdam,
+Berlin,
+Bern,
+Copenhagen,
+Frankfurt
