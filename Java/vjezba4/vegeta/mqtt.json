@@ -1,0 +1,1 @@
+{"topic": "Test", "broker": "tcp://localhost:1883", "message": "myMessage"}

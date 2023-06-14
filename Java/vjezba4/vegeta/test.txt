@@ -1,0 +1,4 @@
+POST http://localhost:8080/message
+Content-Type: application/json
+Authorization: BEARER f0bd6be2-0134-4adf-9256-d1736cb7359b
+@mqtt.json

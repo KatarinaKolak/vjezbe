@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<head>
+    <meta charset="utf-8">
+    <title>Message</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+<script type="text/javascript">
+		setTimeout(function(){window.location.reload(1);}, 3500);
+</script>
+
+</head>
+<body>
+	<table>
+		<thead>
+			<tr>
+				<th>Welcome to message page:</th>
+			</tr>
+		</thead>
+		<tbody>
+			<h4 class="text-center"><a href="/topic">New topic</a></h4>
+			<tr th:if="${messages.empty}">
+				<td colspan="2"> Messages ... </td>
+			</tr>
+			<tr th:each="message : ${messages}">
+				<td><span th:text="${message}"></span></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

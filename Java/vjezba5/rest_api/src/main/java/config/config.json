@@ -1,0 +1,42 @@
+{
+  "address": "tcp://localhost:1883",
+  "method": "mqtt",
+  "sensors": [
+    {
+      "name": "Current water temperature",
+      "type": "int16",
+      "factor": 10,
+      "min": -3266.8,
+      "max": 3266.8,
+      "unit": "Celsius",
+      "value": -246.81174034814904
+    },
+    {
+      "name": "Current water pressure",
+      "type": "int16",
+      "factor": 1000,
+      "min": 0,
+      "max": 65.336,
+      "unit": "Bar",
+      "value": 0.05125135590123684
+    },
+    {
+      "name": "Consumption in last 1 min, 10 min, 1 hour, 1 day ",
+      "type": "uint16",
+      "factor": 0,
+      "min": 0,
+      "max": 65336,
+      "unit": "Litra",
+      "value": 6070.820228882374
+    },
+    {
+      "name": "Consumption in last 1 week, 1 month, 1 year",
+      "type": "uint16",
+      "factor": 10,
+      "min": 0,
+      "max": 6533.6,
+      "unit": "m3",
+      "value": 121.09458963001468
+    }
+  ]
+}

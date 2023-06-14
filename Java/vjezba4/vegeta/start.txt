@@ -1,0 +1,6 @@
+vegeta.exe attack -duration=5s -rate=5 -targets=test.txt | vegeta.exe report
+
+vegeta.exe attack -duration=1s -targets=test.txt | vegeta.exe report
+
+vegeta.exe attack -duration=5s -rate=5 -targets=test.txt | vegeta.exe report | vegeta plot 
+--title="Title" > page.html
